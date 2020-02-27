@@ -31,18 +31,18 @@ library
                        Network.Mail.Parse.Parsers.Utils
   -- other-modules:
   -- other-extensions:
-  build-depends:       base >=4.10 && <4.12,
-                       bytestring == 0.10.*,
-                       attoparsec == 0.13.*,
-                       word8 == 0.1.*,
-                       text == 1.2.*,
-                       mime == 0.4.*,
-                       MissingH == 1.4.*,
-                       either >= 4.4.0 && <6,
-                       text-icu == 0.7.*,
-                       time == 1.8.*,
-                       strptime == 1.0.*,
-                       either-unwrap == 1.1.*
+  build-depends:       base >=4.10,
+                       bytestring >= 0.10,
+                       attoparsec >= 0.13,
+                       word8 >= 0.1,
+                       text >= 1.2,
+                       mime >= 0.4,
+                       MissingH >= 1.4,
+                       either >= 4.4.0,
+                       text-icu >= 0.7,
+                       time >= 1.8,
+                       strptime >= 1.0,
+                       either-unwrap >= 1.1
   hs-source-dirs:      src
   c-sources:           csrc/codec.c
   include-dirs:        csrc
@@ -64,25 +64,25 @@ Test-Suite emailparse-test
   type: exitcode-stdio-1.0
   main-is: main.hs
   hs-source-dirs: test, src
-  build-depends:       base >=4.10 && <4.11,
-                       bytestring == 0.10.*,
-                       attoparsec == 0.13.*,
-                       word8 == 0.1.*,
-                       text == 1.2.*,
-                       mime == 0.4.*,
-                       MissingH == 1.4.*,
-                       either == 4.4.*,
-                       text-icu == 0.7.*,
-                       time == 1.8.*,
-                       strptime == 1.0.*,
-                       either-unwrap == 1.1.*,
+  build-depends:       base >=4.10,
+                       bytestring >= 0.10,
+                       attoparsec >= 0.13,
+                       word8 >= 0.1,
+                       text >= 1.2,
+                       mime >= 0.4,
+                       MissingH >= 1.4,
+                       either >= 4.4,
+                       text-icu >= 0.7,
+                       time >= 1.8,
+                       strptime >= 1.0,
+                       either-unwrap >= 1.1,
 
-                       tasty == 0.11.*,
-                       HUnit == 1.6.*,
-                       QuickCheck == 2.10.*,
-                       tasty-hunit == 0.9.*,
-                       tasty-quickcheck == 0.9.*,
-                       mtl == 2.2.*
+                       tasty >= 0.11,
+                       HUnit >= 1.6,
+                       QuickCheck >= 2.10,
+                       tasty-hunit >= 0.9,
+                       tasty-quickcheck >= 0.9,
+                       mtl >= 2.2
   c-sources:           csrc/codec.c
   include-dirs:        csrc
   cc-options:          -fPIC -Wall -Wextra

@@ -6,7 +6,7 @@ import Data.Attoparsec.ByteString
 import qualified Data.Attoparsec.ByteString as AP
 import qualified Data.ByteString.Char8 as BS
 import Data.Word8
-import Data.List
+import Data.List as L
 
 import Data.Text (Text)
 import qualified Data.Text as T
@@ -50,6 +50,30 @@ findHeader hdr headers = maybeToEither notFound header
   where notFound    = T.concat ["Cound not find header '", T.pack . show $ hdr, "'"]
         eigenHeader = T.toLower hdr
         header      = find (\x -> T.toLower (headerName x) == eigenHeader) headers
+
+-- | specify the name of an RFC 5322 field name,
+-- and this will return all headers in the message
+-- matching that field name.
+lookupHeaders :: Text -> EmailMessage -> [Header]
+lookupHeaders fieldName msg =
+    let hs = emailHeaders msg
+    in filter (\h -> origHeader h == T.toLower fieldName) hs
+  where
+    origHeader :: Header -> Text
+    origHeader hdr = case hdr of
+      Header{}      -> headerName hdr
+      Date{}        -> "date"
+      From{}        -> "from"
+      To{}          -> "to"
+      ReplyTo{}     -> "reply-to"
+      CC{}          -> "cc"
+      BCC{}         -> "bcc"
+      MessageId{}   -> "nessage-id"
+      InReplyTo{}   -> "in-reply-to"
+      References{}  -> "referebces"
+      Subject{}     -> "subject"
+      Comments{}    -> "comments"
+      Keywords{}    -> "keywords"
 
 eitherToMaybe :: Either a b -> Maybe b
 eitherToMaybe (Right a) = Just a
